@@ -1267,9 +1267,9 @@ $grad-labels: map.get($gradients, "default");
       $list: list.append($list, #{$variation});
     }
     $linear-gradient-stops: '';
-    @for $i from 1 through length($list) {
+    @for $i from 1 through list.length($list) {
       $linear-gradient-stops: $linear-gradient-stops + var(--gradient-#{$main-color}-#{list.nth($list, $i)});
-      @if($i < length($list)) {
+      @if($i < list.length($list)) {
         $linear-gradient-stops: $linear-gradient-stops + ', '
       }
     }
@@ -1407,17 +1407,17 @@ $grad-labels: map.get($gradients, "default");
 }
 
 // alt approach - max-width is equal to current breakpoint
-$breakpoints-nr: length($breakpoints);
+$breakpoints-nr: list.length($breakpoints);
 @each $breakpoint, $value in $breakpoints {
-  $i: index($breakpoints, $breakpoint $value);
+  $i: list.index($breakpoints, $breakpoint $value);
   @if $i == 1 {
     [class^="#{$util-prefix}max-width-adaptive"], [class*=" #{$util-prefix}max-width-adaptive"] {
-      max-width: string.unquote(map-get($map: $breakpoints, $key: #{$breakpoint}));
+      max-width: string.unquote(map.get($map: $breakpoints, $key: #{$breakpoint}));
     }
   } @else {
     $class-list : '';
     @each $sub-breakpoint, $sub-value in $breakpoints {
-      $j: index($breakpoints, $sub-breakpoint $sub-value);
+      $j: list.index($breakpoints, $sub-breakpoint $sub-value);
       @if $j == $i {
         $class-list: '.#{$util-prefix}max-width-adaptive-#{$sub-breakpoint}';
       } @else if $j > $i {
@@ -1426,7 +1426,7 @@ $breakpoints-nr: length($breakpoints);
     }
     @media (min-width: #{$value}) {
       #{$class-list} {
-        max-width: string.unquote(map-get($map: $breakpoints, $key: #{$breakpoint}));
+        max-width: string.unquote(map.get($map: $breakpoints, $key: #{$breakpoint}));
       }
     }
   }
@@ -1895,9 +1895,9 @@ $grad-labels: map.get($gradients, "default");
       $list: list.append($list, #{$variation});
     }
     $gradient-stops: '';
-    @for $i from 1 through length($list) {
+    @for $i from 1 through list.length($list) {
       $gradient-stops: $gradient-stops + var(--gradient-#{$main-color}-#{list.nth($list, $i)});
-      @if($i < length($list)) {
+      @if($i < list.length($list)) {
         $gradient-stops: $gradient-stops + ', '
       }
     }
@@ -2072,9 +2072,9 @@ $grad-labels: map.get($gradients, "default");
       $list: list.append($list, #{$variation});
     }
     $gradient-stops: '';
-    @for $i from 1 through length($list) {
+    @for $i from 1 through list.length($list) {
       $gradient-stops: $gradient-stops + var(--gradient-#{$main-color}-#{list.nth($list, $i)});
-      @if($i < length($list)) {
+      @if($i < list.length($list)) {
         $gradient-stops: $gradient-stops + ', '
       }
     }
